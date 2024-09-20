@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Stop watch',
       home: HomeApp(),
     );
@@ -67,7 +68,31 @@ class _HomeAppState extends State<HomeApp> {
                       shape: StadiumBorder(
                         side: BorderSide(color: Colors.blue),
                       ),
-                      child: Text("Start"),
+                      child: Text(
+                        "Start",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.flag),
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    child: RawMaterialButton(
+                      onPressed: () {},
+                      fillColor: Colors.blue,
+                      shape: const StadiumBorder(),
+                      child: Text(
+                        "Reset",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ],
