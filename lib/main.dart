@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,6 +27,33 @@ class HomeApp extends StatefulWidget {
 }
 
 class _HomeAppState extends State<HomeApp> {
+  //create  the business logic  of the app
+  int seconds = 0, minutes = 0, hours = 0;
+  String digitSeconds = "00", digitMinutes = "00", digitHours = "00";
+
+  Timer? timer;
+  bool started = false;
+  List laps = [];
+
+//creating the stop timer function
+  void stop() {
+    timer!.cancel();
+    setState(() {
+      started = false;
+    });
+  }
+
+  //creating the reset function
+
+  void reset() {
+    timer!.cancel();
+    setState(() {
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +77,16 @@ class _HomeAppState extends State<HomeApp> {
               ),
               SizedBox(
                 height: 20.0,
+              ),
+              Center(
+                child: Text(
+                  "00:00:00",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 82.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
               Container(
                 height: 400.0,
@@ -78,6 +117,7 @@ class _HomeAppState extends State<HomeApp> {
                     width: 8.0,
                   ),
                   IconButton(
+                    color: Colors.white,
                     onPressed: () {},
                     icon: Icon(Icons.flag),
                   ),
