@@ -86,6 +86,11 @@ class _HomeAppState extends State<HomeApp> {
       }
       setState(() {
         seconds = localSeconds;
+        minutes = localMinutes;
+        hours = localHours;
+        digitSeconds = (seconds >= 10) ? "$seconds" : "0$seconds";
+        digitMinutes = (minutes >= 10) ? "$minutes" : "0$minutes";
+        digitHours = (hours >= 10) ? "$hours" : "0$hours";
       });
     });
   }
@@ -130,6 +135,16 @@ class _HomeAppState extends State<HomeApp> {
                   color: Color(0xFF323F68),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
+                child: ListView.builder(
+                    itemCount: laps.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                      );
+                    }),
               ),
               SizedBox(
                 height: 20.0,
