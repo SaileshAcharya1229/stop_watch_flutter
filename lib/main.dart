@@ -121,7 +121,7 @@ class _HomeAppState extends State<HomeApp> {
               ),
               Center(
                 child: Text(
-                  "00:00:00",
+                  "$digitHours:$digitMinutes:$digitSeconds",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 82.0,
@@ -142,6 +142,18 @@ class _HomeAppState extends State<HomeApp> {
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Lap n${index + 1}",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16.0),
+                            ),
+                            Text(
+                              "${laps[index]}",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16.0),
+                            ),
+                          ],
                         ),
                       );
                     }),
@@ -154,12 +166,14 @@ class _HomeAppState extends State<HomeApp> {
                 children: [
                   Expanded(
                     child: RawMaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        (!started) ? start() : stop();
+                      },
                       shape: StadiumBorder(
                         side: BorderSide(color: Colors.blue),
                       ),
                       child: Text(
-                        "Start",
+                        (!started) ? "Start" : "Pause",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -169,7 +183,9 @@ class _HomeAppState extends State<HomeApp> {
                   ),
                   IconButton(
                     color: Colors.white,
-                    onPressed: () {},
+                    onPressed: () {
+                      addLaps();
+                    },
                     icon: Icon(Icons.flag),
                   ),
                   SizedBox(
@@ -177,7 +193,9 @@ class _HomeAppState extends State<HomeApp> {
                   ),
                   Expanded(
                     child: RawMaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        reset();
+                      },
                       fillColor: Colors.blue,
                       shape: const StadiumBorder(),
                       child: Text(
